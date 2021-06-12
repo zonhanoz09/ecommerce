@@ -1,0 +1,14 @@
+<p>login</p>
+
+<div>
+    <label for="user-name">Username: </label>
+    <input id="user-name" #userName />
+    <br/>
+    <label for="password">Password: </label>
+    <input id="password" #password type="password"/>
+    <br/>
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button class="add-button" (click)="add(userName.value, password.value); userName.value=''; password.value=''">
+      Login
+    </button>
+  </div>
