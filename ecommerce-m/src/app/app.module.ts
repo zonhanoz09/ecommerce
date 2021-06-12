@@ -4,11 +4,16 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { LoginComponent } from './component/login/login.component';
 import { MessagesComponent } from './messages/messages.component';
 import { ProductComponent } from './component/product/product.component';
+import { CustomerComponent } from './component/customer/customer.component';
+import { CustomerCreateComponent } from './component/customer/customer-create/customer-create.component';
+import { CustomerDetailComponent } from './component/customer/customer-detail/customer-detail.component';
+import { CustomerEditComponent } from './component/customer/customer-edit/customer-edit.component';
 
 @NgModule({
   declarations: [
@@ -16,12 +21,17 @@ import { ProductComponent } from './component/product/product.component';
     LoginComponent,
     DashboardComponent,
     MessagesComponent,
-    ProductComponent
+    ProductComponent,
+    CustomerComponent,
+    CustomerCreateComponent,
+    CustomerDetailComponent,
+    CustomerEditComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
