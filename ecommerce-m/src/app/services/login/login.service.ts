@@ -7,12 +7,13 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { User } from 'src/app/models/user/user.model';
 import { MessageService } from '../../message.service';
 import { UserLogin } from 'src/app/models/user/user-login.model';
+import {AppSettings} from '../../appSettings';
 
 @Injectable({providedIn: 'root'})
 export class LoginService {
 
-  private userUrl = 'http://localhost:8080/user';  // URL to web api
-  private userUrlLogin = 'http://localhost:8080/user/login';  // URL login
+  private userUrl = AppSettings.API_ENDPOINT + 'user';  // URL to web api
+  private userUrlLogin = AppSettings.API_ENDPOINT + 'user/login';  // URL login
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

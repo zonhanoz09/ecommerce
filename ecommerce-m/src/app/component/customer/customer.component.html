@@ -9,24 +9,28 @@
     </div>
   </div>
   <br />
-  <table class="table table-bordered table-sm">
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Amount</th>
-      <th>Status</th>
-      <th width="200px"></th>
-    </tr>
-    <tr *ngFor="let user of users">
-      <td>{{ user.id }}</td>
-      <td>{{ user.name }}</td>
-      <td>{{ user.amount }}</td>
-      <td>{{ user.status }}</td>
-      <td class="text-right">
-        <a href="#" [routerLink]="['/customer/', user.id, 'details']" class="btn btn-info btn-sm">View</a>
-        <a href="#" [routerLink]="['/customer/', user.id, 'edit']" class="btn btn-primary btn-sm">Edit</a>
-        <button type="button" (click)="deleteCustomer(user.id)" class="btn btn-danger btn-sm">Delete</button>
-      </td>
-    </tr>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th width="200px"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.amount }}</td>
+        <td>{{ user.status }}</td>
+        <td class="text-right">
+          <a href="#" [routerLink]="['/customer/', user.id, 'details']" class="btn btn-primary btn-sm"><i class="far fa-eye"></i></a>
+          <a href="#" [routerLink]="['/customer/', user.id, 'edit']" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a>
+          <button type="button" (click)="deleteCustomer(user.id)" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
+        </td>
+      </tr>
+    </tbody>
   </table>
 </div>

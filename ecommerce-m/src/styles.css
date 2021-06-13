@@ -15,6 +15,8 @@ body {
 .container {
     position: relative;
     width: 100%;
+    max-width: inherit !important;
+    padding-left: 0 !important;
 }
 
 .navigation {
@@ -35,6 +37,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
+    padding-left: 0;
 }
 
 .navigation ul li {
@@ -85,6 +88,11 @@ body {
     height: 60px;
     line-height: 60px;
     white-space: nowrap;
+}
+
+.navigation ul li a .title h2 {
+    height: 100%;
+    line-height: 60px;
 }
 
 .main {
@@ -154,7 +162,7 @@ body {
 .search label .fa-search {
     position: absolute;
     left: 15px;
-    top: 4px;
+    top: 12px;
 }
 
 .user {
@@ -174,6 +182,10 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.main .contaner {
+    padding: 5px 10px;
 }
 
 .cardBox {

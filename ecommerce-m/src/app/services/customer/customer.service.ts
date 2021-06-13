@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user/user.model';
+import {AppSettings} from '../../appSettings';
 
-const baseUrl = 'http://localhost:8080/user';
+const baseUrl = AppSettings.API_ENDPOINT + 'user';
 
 @Injectable({
   providedIn: 'root'

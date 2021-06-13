@@ -6,17 +6,17 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { MessageService } from '../../message.service';
 import { Product } from 'src/app/models/product/product.model';
+import {AppSettings} from '../../appSettings';
 
 @Injectable({providedIn: 'root'})
 export class ProductService {
 
-  private productUrl = 'http://localhost:8888/ecommerce/product';  // URL to web api
+  private productUrl = AppSettings.API_ENDPOINT + 'product';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     .append('Access-Control-Allow-Headers', 'Content-Type')
     .append('Access-Control-Allow-Origin', '*')
-    // .append('Access-Control-Allow-Methods', 'GET')
   };
   
   constructor(
