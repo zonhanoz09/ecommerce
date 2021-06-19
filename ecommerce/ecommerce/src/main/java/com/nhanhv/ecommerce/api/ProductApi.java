@@ -1,7 +1,6 @@
 package com.nhanhv.ecommerce.api;
 
-import com.nhanhv.ecommerce.domain.dto.CreateProductRequest;
-import com.nhanhv.ecommerce.domain.dto.ProductView;
+import com.nhanhv.ecommerce.domain.dto.*;
 import com.nhanhv.ecommerce.domain.model.Role;
 import com.nhanhv.ecommerce.service.ProductService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 @Tag(name = "Product")
 @RestController
@@ -20,7 +20,7 @@ public class ProductApi {
 
     private final ProductService productService;
 
-    @RolesAllowed(Role.USER_ADMIN)
+    @RolesAllowed(Role.ADMIN)
     @PostMapping
     public ProductView create(@RequestBody @Valid CreateProductRequest request) {
         return productService.create(request);
@@ -40,16 +40,16 @@ public class ProductApi {
 //
     @GetMapping("{id}")
     public ProductView get(@PathVariable Long id) {
-        return productService.getBook(id);
+        return productService.getProduct(id);
     }
-//
-//    @GetMapping("{id}/author")
-//    public ListResponse<AuthorView> getAuthors(@PathVariable String id) {
-//        return new ListResponse<>(authorService.getBookAuthors(new ObjectId(id)));
-//    }
-//
-//    @PostMapping("search")
-//    public ListResponse<BookView> search(@RequestBody @Valid SearchRequest<SearchBooksQuery> request) {
-//        return new ListResponse<>(bookService.searchBooks(request.getPage(), request.getQuery()));
-//    }
+
+    @GetMapping
+    public ListResponse<ProductView> getProducts() {
+        return new ListResponse<>(productService.getProducts());
+    }
+
+    @PostMapping("search")
+    public ListResponse<ProductView> search(@RequestBody @Valid SearchRequest<SearchProductsQuery> request) {
+        return new ListResponse<>(productService.searchProducts(request.getPage(), request.getQuery()));
+    }
 }

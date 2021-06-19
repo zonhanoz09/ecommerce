@@ -13,7 +13,7 @@ import javax.validation.Valid;
 
 @Tag(name = "UserAdmin")
 @RestController @RequestMapping(path = "api/admin/user")
-@RolesAllowed(Role.USER_ADMIN)
+@RolesAllowed(Role.ADMIN)
 @RequiredArgsConstructor
 public class UserAdminApi {
 

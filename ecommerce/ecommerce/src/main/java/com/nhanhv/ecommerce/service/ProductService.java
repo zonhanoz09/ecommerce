@@ -1,11 +1,15 @@
 package com.nhanhv.ecommerce.service;
 
 import com.nhanhv.ecommerce.domain.dto.CreateProductRequest;
+import com.nhanhv.ecommerce.domain.dto.Page;
 import com.nhanhv.ecommerce.domain.dto.ProductView;
+import com.nhanhv.ecommerce.domain.dto.SearchProductsQuery;
+import com.nhanhv.ecommerce.domain.mapper.ProductMapper;
 import com.nhanhv.ecommerce.domain.model.Product;
 import com.nhanhv.ecommerce.repository.ProductRepo;
 import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -17,6 +21,9 @@ import java.util.List;
 public class ProductService {
 
     private final ProductRepo productRepo;
+    @Autowired
+    private ProductMapper productMapper;
+
 
     @Transactional
     public ProductView create(CreateProductRequest request) {
@@ -25,14 +32,7 @@ public class ProductService {
         product.setAmount(request.getAmount());
         product.setPrice(request.getPrice());
 
-        product = productRepo.save(product);
-        ProductView productView = new ProductView();
-        productView.setId(product.getId().toString());
-        productView.setName(product.getName());
-        productView.setAmount(product.getAmount());
-        productView.setPrice(product.getPrice());
-
-        return productView;
+        return productMapper.toProductView( productRepo.save(product) );
     }
 //
 //    @Transactional
@@ -63,27 +63,22 @@ public class ProductService {
 //        return bookViewMapper.toBookView(book);
 //    }
 //
-    public ProductView getBook(Long id) {
+    public ProductView getProduct(Long id) {
         Product product = productRepo.getById(id);
-        ProductView productView = new ProductView();
-        productView.setId(product.getId().toString());
-        productView.setName(product.getName());
-        productView.setAmount(product.getAmount());
-        productView.setPrice(product.getPrice());
-        return productView;
+        return productMapper.toProductView( product );
     }
-//
-//    public List<BookView> getBooks(Iterable<ObjectId> ids) {
-//        List<Book> books = bookRepo.findAllById(ids);
-//        return bookViewMapper.toBookView(books);
-//    }
+
+    public List<ProductView> getProducts() {
+        List<Product> products = productRepo.findAll();
+        return productMapper.toProductsView(products);
+    }
 //
 //    public List<BookView> getAuthorBooks(ObjectId authorId) {
 //        Author author = authorRepo.getById(authorId);
 //        return bookViewMapper.toBookView(bookRepo.findAllById(author.getBookIds()));
 //    }
 //
-//    public List<BookView> searchBooks(Page page, SearchBooksQuery query) {
-//        return bookViewMapper.toBookView(bookRepo.searchBooks(page, query));
-//    }
+    public List<ProductView> searchProducts(Page page, SearchProductsQuery query) {
+        return productMapper.toProductsView(productRepo.findProductsByNameContains(query.getName()));
+    }
 }

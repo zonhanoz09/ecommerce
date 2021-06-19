@@ -9,9 +9,7 @@ import java.util.Collection;
 @Entity
 @Table(name = "roles")
 public class Role {
-    public static final String USER_ADMIN = "ADMIN";
-    public static final String AUTHOR_ADMIN = "AUTHOR_ADMIN";
-    public static final String BOOK_ADMIN = "BOOK_ADMIN";
+    public static final String ADMIN = "ADMIN";
     public static final String USER = "USER";
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
