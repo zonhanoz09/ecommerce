@@ -8,16 +8,32 @@ import { CustomerComponent } from './component/customer/customer.component';
 import { CustomerCreateComponent } from './component/customer/customer-create/customer-create.component';
 import { CustomerDetailComponent } from './component/customer/customer-detail/customer-detail.component';
 import { CustomerEditComponent } from './component/customer/customer-edit/customer-edit.component';
+import { Role } from './models/role';
+import { AuthGuard } from './helpers/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component:DashboardComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'product', component: ProductComponent },
-  { path: 'customer', component: CustomerComponent },
-  { path: 'customer/:customerId/details', component: CustomerDetailComponent },
-  { path: 'customer/create', component: CustomerCreateComponent },
-  { path: 'customer/:customerId/edit', component: CustomerEditComponent }
+  {
+      path: '',
+      component: DashboardComponent,
+      canActivate: [AuthGuard]
+  },
+  { path: 'customer', component: CustomerComponent ,canActivate: [AuthGuard] },
+  { path: 'customer/:customerId/details', component: CustomerDetailComponent,canActivate: [AuthGuard] },
+  { path: 'customer/create', component: CustomerCreateComponent,canActivate: [AuthGuard] },
+  { path: 'customer/:customerId/edit', component: CustomerEditComponent,canActivate: [AuthGuard] },
+  {
+      path: 'dashboard',
+      component: DashboardComponent,
+      canActivate: [AuthGuard]
+      // data: { roles: [Role.ADMIN] }
+  },
+  {
+      path: 'login',
+      component: LoginComponent
+  },
+
+  // otherwise redirect to home
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

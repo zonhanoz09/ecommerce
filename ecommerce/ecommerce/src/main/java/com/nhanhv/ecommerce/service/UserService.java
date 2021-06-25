@@ -2,11 +2,14 @@ package com.nhanhv.ecommerce.service;
 
 import com.nhanhv.ecommerce.domain.dto.CreateUserRequest;
 import com.nhanhv.ecommerce.domain.dto.UserView;
+import com.nhanhv.ecommerce.domain.mapper.ProductMapper;
+import com.nhanhv.ecommerce.domain.mapper.UserMapper;
 import com.nhanhv.ecommerce.domain.model.Role;
 import com.nhanhv.ecommerce.domain.model.User;
 import com.nhanhv.ecommerce.repository.RoleRepo;
 import com.nhanhv.ecommerce.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,6 +27,8 @@ public class UserService implements UserDetailsService {
 
     private final UserRepo userRepo;
     private final RoleRepo roleRepository;
+    @Autowired
+    private UserMapper userMapper;
     //private final UserViewMapper userViewMapper;
     private final PasswordEncoder passwordEncoder;
 
@@ -49,11 +54,7 @@ public class UserService implements UserDetailsService {
             roles_.add(roleRepository.findByName(item));
         }
         user.setRoles(roles_);
-        User user_  = userRepo.save(user);
-        UserView userView = new UserView();
-        userView.setId(user_.getId().toString());
-        userView.setUsername(user_.getUsername());
-        return userView;
+        return userMapper.toUserView(userRepo.save(user));
     }
 //
 //    @Transactional
@@ -154,11 +155,11 @@ public class UserService implements UserDetailsService {
 //    }
 //
     public UserView getUser(Long id) {
-        var user = userRepo.getById(id);
-        UserView userView = new UserView();
-        userView.setUsername(user.getUsername());
-        userView.setId(user.getId().toString());
-        return userView;
+        return userMapper.toUserView(userRepo.getById(id));
+    }
+
+    public List<UserView> getUsers() {
+        return userMapper.toUsersView(userRepo.findAll());
     }
 //
 //    public List<UserView> searchUsers(Page page, SearchUsersQuery query) {

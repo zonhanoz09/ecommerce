@@ -8,7 +8,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { LoginComponent } from './component/login/login.component';
-import { MessagesComponent } from './messages/messages.component';
 import { ProductComponent } from './component/product/product.component';
 import { CustomerComponent } from './component/customer/customer.component';
 import { CustomerCreateComponent } from './component/customer/customer-create/customer-create.component';
@@ -20,7 +19,6 @@ import { CustomerEditComponent } from './component/customer/customer-edit/custom
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    MessagesComponent,
     ProductComponent,
     CustomerComponent,
     CustomerCreateComponent,
