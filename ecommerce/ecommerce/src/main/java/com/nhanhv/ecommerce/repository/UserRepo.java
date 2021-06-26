@@ -3,6 +3,7 @@ package com.nhanhv.ecommerce.repository;
 import com.nhanhv.ecommerce.domain.dto.Page;
 import com.nhanhv.ecommerce.domain.dto.SearchUsersQuery;
 import com.nhanhv.ecommerce.domain.exception.NotFoundException;
+import com.nhanhv.ecommerce.domain.model.Role;
 import com.nhanhv.ecommerce.domain.model.User;
 import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;

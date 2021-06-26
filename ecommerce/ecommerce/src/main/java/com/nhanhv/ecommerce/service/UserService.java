@@ -26,7 +26,7 @@ import java.util.*;
 public class UserService implements UserDetailsService {
 
     private final UserRepo userRepo;
-    private final RoleRepo roleRepository;
+    private final RoleRepo roleRepo;
     @Autowired
     private UserMapper userMapper;
     //private final UserViewMapper userViewMapper;
@@ -49,13 +49,15 @@ public class UserService implements UserDetailsService {
         User user = new User();
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setUsername(request.getUsername());
+        user.setAmount(request.getAmount());
         var roles_ = new ArrayList<Role>();
         for (String item : request.getAuthorities()) {
-            roles_.add(roleRepository.findByName(item));
+            roles_.add(roleRepo.findByName(item));
         }
         user.setRoles(roles_);
         return userMapper.toUserView(userRepo.save(user));
     }
+
 //
 //    @Transactional
 //    public UserView update(ObjectId id, UpdateUserRequest request) {
@@ -119,7 +121,7 @@ public class UserService implements UserDetailsService {
         if (user == null) {
             return new org.springframework.security.core.userdetails.User(
                     " ", " ", true, true, true, true,
-                    getAuthorities(Arrays.asList(roleRepository.findByName("ROLE_USER"))));
+                    getAuthorities(Arrays.asList(roleRepo.findByName("ADMIN"))));
         }
 
         return new org.springframework.security.core.userdetails.User(

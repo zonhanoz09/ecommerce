@@ -6,7 +6,7 @@
     <div class="card-header">
       <div class="row">
         <div class="col">
-          <h4>{{ user?.name }}</h4>
+          <h4>{{ user?.username }}</h4>
         </div>
         <div class="col text-right">
           <a routerLink="/customer" class="btn btn-secondary btn-sm">Back To Players List</a>
@@ -15,8 +15,7 @@
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item"><b>Id:</b> {{ user?.id }}</li>
-      <li class="list-group-item"><b>Name:</b> {{ user?.name }}</li>
-      <li class="list-group-item"><b>Amount:</b> {{ user?.amount }}</li>
+      <li class="list-group-item"><b>Name:</b> {{ user?.username }}</li>
     </ul>
   </div>
 </div>

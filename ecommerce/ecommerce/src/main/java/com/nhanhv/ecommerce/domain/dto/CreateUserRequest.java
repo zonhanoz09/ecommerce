@@ -13,6 +13,7 @@ public class CreateUserRequest {
     private String username;
     @NotBlank
     private String password;
+    private String amount;
     @NotBlank
     private String rePassword;
     private Set<String> authorities;

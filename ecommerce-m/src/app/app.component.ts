@@ -3,6 +3,8 @@ import { User } from '../app/models/user';
 import { Role } from '../app/models/role';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../app/services/authentication.service';
+import { map,  } from 'rxjs/operators';
+import { observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +29,7 @@ export class AppComponent  {
   }
 
   get isAdmin() {
-      return this.currentUser && this.currentUser.role === Role.ADMIN;
+      return this.currentUser &&  this.currentUser?.role.find(x => x.authority == Role.ADMIN);
   }
 
   logout() {

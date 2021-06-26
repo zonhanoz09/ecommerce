@@ -17,10 +17,9 @@ export class CustomerCreateComponent implements OnInit {
   ) {
     this.createForm = this.formBuilder.group({
       username: ['', Validators.required],
-      name: ['', Validators.required],
-      status: [''],
       amount: ['', Validators.min(0)],
-      password: ['']
+      password: ['', Validators.required],
+      repassword: ['', Validators.required]
     });
   }
 

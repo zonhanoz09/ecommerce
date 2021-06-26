@@ -38,7 +38,7 @@ public class SwaggerConfig {
                 )
                 .info(
                         new Info()
-                                .title("Bookstore Rest Api")
+                                .title("Ecommerce Rest Api")
                                 .description("Rest Api for bookstore web application")
                                 .version("1.0")
                 );

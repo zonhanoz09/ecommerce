@@ -1,9 +1,7 @@
-﻿import { Role } from "./role";
-
-export interface User {
+﻿export interface User {
     id: number;
     username: string;
     password: string;
-    role: Role;
+    role: Array<{authority}>;
     token?: string;
 }

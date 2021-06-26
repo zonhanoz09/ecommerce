@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/user/user.model';
+import { User } from 'src/app/models/user';
 import { CustomerService } from 'src/app/services/customer/customer.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { CustomerService } from 'src/app/services/customer/customer.service';
 })
 export class CustomerComponent implements OnInit {
 
-  users: User[] = [];
+  users: User[];
 
   currentProduct = new Object();
   currentIndex = -1;

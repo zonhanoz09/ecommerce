@@ -10,20 +10,7 @@
   </div>
   <br />
   <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
-
-    <div class="form-group">
-      <label for="name">Name:</label>
-      <input formControlName="name" id="name" type="text" class="form-control" />
-    </div>
-    <div class="form-group">
-      <label for="amount">Amount:</label>
-      <input formControlName="amount" id="amount" type="number" class="form-control" />
-    </div>
-    <div class="form-group">
-      <label for="status">Status:</label>
-      <input formControlName="status" id="status" type="text" class="form-control" />
-    </div>
-
+   
     <div class="form-group">
       <label for="username">Username:</label>
       <input formControlName="username" id="username" type="text" class="form-control" />
@@ -32,6 +19,16 @@
     <div class="form-group">
       <label for="password">Password:</label>
       <input formControlName="password" id="goals" type="password" class="form-control" />
+    </div>
+    
+    <div class="form-group">
+      <label for="password">RePassword:</label>
+      <input formControlName="repassword" id="goals" type="password" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="amount">Amount:</label>
+      <input formControlName="amount" id="amount" type="number" class="form-control" />
     </div>
 
     <button class="btn btn-primary" type="submit" [disabled]="!createForm.valid">Create</button>

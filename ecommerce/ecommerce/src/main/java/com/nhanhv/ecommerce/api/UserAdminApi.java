@@ -19,11 +19,11 @@ public class UserAdminApi {
 
     private final UserService userService;
 
-    @PostMapping
-    public UserView create(@RequestBody @Valid CreateUserRequest request) {
-//        return userService.create(request);
-    return null;
-    }
+//    @PostMapping
+//    public UserView create(@RequestBody @Valid CreateUserRequest request) {
+////        return userService.create(request);
+//    return null;
+//    }
 
 //    @PutMapping("{id}")
 //    public UserView update(@PathVariable String id, @RequestBody @Valid UpdateUserRequest request) {
