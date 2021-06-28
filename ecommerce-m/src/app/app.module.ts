@@ -16,6 +16,8 @@ import { CustomerComponent } from './component/customer/customer.component';
 import { CustomerCreateComponent } from './component/customer/customer-create/customer-create.component';
 import { CustomerDetailComponent } from './component/customer/customer-detail/customer-detail.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +32,8 @@ import { CustomerDetailComponent } from './component/customer/customer-detail/cu
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
