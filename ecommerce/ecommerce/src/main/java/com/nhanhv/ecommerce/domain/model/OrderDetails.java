@@ -32,6 +32,6 @@ public class OrderDetails implements Serializable {
     private Long orderId;
     private Long productId;
     private String unitPrice;
-    private String quantity;
+    private Integer quantity;
     private String discount;
 }

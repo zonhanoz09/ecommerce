@@ -37,7 +37,7 @@ public class Product implements Serializable {
     private String productDate;
     private String available;
     private Long categoryId;
-    private String quantity;
+    private Integer quantity;
     private String description;
     private String discount;
     private String viewCount;

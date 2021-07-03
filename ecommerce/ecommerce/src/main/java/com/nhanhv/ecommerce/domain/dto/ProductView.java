@@ -14,7 +14,7 @@ public class ProductView {
     private String image;
     private String available;
     private String productDate;
-    private String quantity;
+    private Integer quantity;
     private String special;
     private String unitPrice;
     private String viewCount;

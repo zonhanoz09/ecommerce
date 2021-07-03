@@ -15,7 +15,7 @@ public class CreateProductRequest {
     private String image;
     private String available;
     private String productDate;
-    private String quantity;
+    private Integer quantity;
     private String special;
     private String unitPrice;
 }
