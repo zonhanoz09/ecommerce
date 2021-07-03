@@ -6,12 +6,13 @@ import {AppSettings} from '../../appSettings';
 import { environment } from '../../../environments/environment';
 
 const baseUrl = environment.apiUrl + '/api/admin/user';
+const baseUrlcreate = environment.apiUrl + '/api/public/user/create';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
-  
+
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<any> {
@@ -23,7 +24,7 @@ export class CustomerService {
   }
 
   create(data: User): Observable<any> {
-    return this.http.post(baseUrl, data);
+    return this.http.post(baseUrlcreate, data);
   }
 
   // update(id:number, data:User): Observable<any> {

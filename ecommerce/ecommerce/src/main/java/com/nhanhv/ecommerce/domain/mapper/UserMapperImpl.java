@@ -18,6 +18,7 @@ public class UserMapperImpl implements UserMapper {
         UserView userView = new UserView();
         userView.setId( user.getId().toString());
         userView.setUsername( user.getUsername());
+        userView.setAmount( user.getAmount());
         return userView;
     }
 

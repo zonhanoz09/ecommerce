@@ -1,17 +1,13 @@
 package com.nhanhv.ecommerce.api;
 
 import com.nhanhv.ecommerce.configuration.security.JwtTokenUtil;
-import com.nhanhv.ecommerce.domain.dto.AuthRequest;
-import com.nhanhv.ecommerce.domain.dto.CreateUserRequest;
-import com.nhanhv.ecommerce.domain.dto.UserLoginResponse;
-import com.nhanhv.ecommerce.domain.dto.UserView;
+import com.nhanhv.ecommerce.domain.dto.*;
 import com.nhanhv.ecommerce.domain.mapper.UserMapper;
 import com.nhanhv.ecommerce.domain.model.User;
 import com.nhanhv.ecommerce.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,6 +17,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 @Tag(name = "Authentication")
 @RestController @RequestMapping(path = "api/public")
@@ -54,6 +53,21 @@ public class AuthApi {
     @PostMapping("register")
     public UserView register(@RequestBody @Valid CreateUserRequest request) {
         return userService.create(request);
+    }
+
+    @PostMapping("user/create")
+    public UserView create(@RequestBody @Valid CreateCustomerRequest request) {
+
+        CreateUserRequest createUserRequest = new CreateUserRequest();
+
+        Set<String> roles_ = new HashSet<>();
+        createUserRequest.setUsername(request.getUsername());
+        createUserRequest.setAmount(request.getAmount().toString());
+        createUserRequest.setPassword(request.getPassword());
+        createUserRequest.setRePassword(request.getRepassword());
+        roles_.add(request.getRole());
+        createUserRequest.setAuthorities(roles_);
+        return userService.create(createUserRequest);
     }
 
 }

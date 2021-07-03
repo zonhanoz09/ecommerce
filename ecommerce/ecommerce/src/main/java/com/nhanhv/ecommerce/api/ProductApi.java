@@ -20,24 +20,24 @@ public class ProductApi {
 
     private final ProductService productService;
 
-    @RolesAllowed(Role.ADMIN)
+    //@RolesAllowed(Role.ADMIN)
     @PostMapping
     public ProductView create(@RequestBody @Valid CreateProductRequest request) {
         return productService.create(request);
     }
 
 //    @RolesAllowed(Role.BOOK_ADMIN)
-//    @PutMapping("{id}")
-//    public BookView edit(@PathVariable String id, @RequestBody @Valid EditBookRequest request) {
-//        return bookService.update(new ObjectId(id), request);
-//    }
+    @PutMapping("{id}")
+    public ProductView edit(@PathVariable Long id, @RequestBody @Valid EditProductRequest request) {
+        return productService.update(id, request);
+    }
 
-//    @RolesAllowed(Role.BOOK_ADMIN)
-//    @DeleteMapping("{id}")
-//    public BookView delete(@PathVariable String id) {
-//        return bookService.delete(new ObjectId(id));
-//    }
-//
+    //@RolesAllowed(Role.BOOK_ADMIN)
+    @DeleteMapping("{id}")
+    public ProductView delete(@PathVariable Long id) {
+        return productService.delete(id);
+    }
+
     @GetMapping("{id}")
     public ProductView get(@PathVariable Long id) {
         return productService.getProduct(id);

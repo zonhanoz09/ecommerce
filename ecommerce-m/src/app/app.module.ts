@@ -17,6 +17,13 @@ import { CustomerCreateComponent } from './component/customer/customer-create/cu
 import { CustomerDetailComponent } from './component/customer/customer-detail/customer-detail.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule} from "@angular/material/paginator";
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule} from "@angular/material/icon";
+import { MatInputModule } from '@angular/material/input';
+import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -33,11 +40,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}}
   ],
   bootstrap: [AppComponent]
 })

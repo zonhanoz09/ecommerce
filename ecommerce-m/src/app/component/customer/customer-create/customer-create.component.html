@@ -5,32 +5,50 @@
       <h3>Customer</h3>
     </div>
     <div class="col text-right">
-      <a href="#" routerLink="/customer" class="btn btn-secondary btn-sm">Back To Players List</a>
+      <a href="#" routerLink="/customer" class="btn btn-secondary btn-sm" mat-button>Back To Players List</a>
     </div>
   </div>
   <br />
-  <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
-   
-    <div class="form-group">
-      <label for="username">Username:</label>
-      <input formControlName="username" id="username" type="text" class="form-control" />
-    </div>
 
-    <div class="form-group">
-      <label for="password">Password:</label>
-      <input formControlName="password" id="goals" type="password" class="form-control" />
-    </div>
-    
-    <div class="form-group">
-      <label for="password">RePassword:</label>
-      <input formControlName="repassword" id="goals" type="password" class="form-control" />
-    </div>
+  <form [formGroup]="createForm" >
 
-    <div class="form-group">
-      <label for="amount">Amount:</label>
-      <input formControlName="amount" id="amount" type="number" class="form-control" />
-    </div>
+    <mat-form-field appearance="fill" class="form-group">
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username" type="text" >
+    </mat-form-field>
 
-    <button class="btn btn-primary" type="submit" [disabled]="!createForm.valid">Create</button>
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Re Password</mat-label>
+      <input matInput [type]="hider ? 'password' : 'text'" formControlName="repassword">
+      <button mat-icon-button matSuffix (click)="hider = !hider" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hider">
+        <mat-icon>{{hider ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" floatLabel="always">
+      <mat-label>Amount</mat-label>
+      <input matInput type="number" formControlName="amount" class="example-right-align" placeholder="0">
+      <span matPrefix>$&nbsp;</span>
+      <span matSuffix>.000</span>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" [color]="color">
+      <mat-label>Color</mat-label>
+      <mat-select formControlName="role" (selectionChange)="changeRole()">
+        <mat-option value="ADMIN">ADMIN</mat-option>
+        <mat-option value="USER">USER</mat-option>
+        <mat-option value="SUPER">SUPER</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br/>
+    <button mat-button color="primary" type="submit" [disabled]="!createForm.valid" (click)="onSubmit()">Create</button>
   </form>
 </div>

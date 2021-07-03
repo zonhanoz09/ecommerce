@@ -1,9 +1,6 @@
 package com.nhanhv.ecommerce.service;
 
-import com.nhanhv.ecommerce.domain.dto.CreateProductRequest;
-import com.nhanhv.ecommerce.domain.dto.Page;
-import com.nhanhv.ecommerce.domain.dto.ProductView;
-import com.nhanhv.ecommerce.domain.dto.SearchProductsQuery;
+import com.nhanhv.ecommerce.domain.dto.*;
 import com.nhanhv.ecommerce.domain.mapper.ProductMapper;
 import com.nhanhv.ecommerce.domain.model.Product;
 import com.nhanhv.ecommerce.repository.ProductRepo;
@@ -27,42 +24,31 @@ public class ProductService {
 
     @Transactional
     public ProductView create(CreateProductRequest request) {
-        Product product = new Product();
-        product.setName(request.getName());
-        product.setAmount(request.getAmount());
-        product.setPrice(request.getPrice());
-
-        return productMapper.toProductView( productRepo.save(product) );
+        return productMapper.toProductView( productRepo.save( productMapper.toProduct(request)) );
     }
-//
-//    @Transactional
-//    public BookView update(ObjectId id, EditBookRequest request) {
-//        Book book = bookRepo.getById(id);
-//        bookEditMapper.update(request, book);
-//
-//        book = bookRepo.save(book);
-//        if (!CollectionUtils.isEmpty(request.getAuthorIds())) {
-//            updateAuthors(book);
-//        }
-//
-//        return bookViewMapper.toBookView(book);
-//    }
-//
-//    private void updateAuthors(Book book) {
-//        List<Author> authors = authorRepo.findAllById(book.getAuthorIds());
-//        authors.forEach(author -> author.getBookIds().add(book.getId()));
-//        authorRepo.saveAll(authors);
-//    }
-//
-//    @Transactional
-//    public BookView delete(ObjectId id) {
-//        Book book = bookRepo.getById(id);
-//
-//        bookRepo.delete(book);
-//
-//        return bookViewMapper.toBookView(book);
-//    }
-//
+
+    @Transactional
+    public ProductView update(Long id, EditProductRequest request) {
+        Product product = productRepo.getById(id);
+        product.setName(request.getName());
+        product.setAvailable(request.getAvailable());
+        product.setCategoryId(request.getCategoryId());
+        product.setDescription(request.getDescription());
+        product.setDiscount(request.getDiscount());
+        product.setImage(request.getImage());
+        product.setQuantity(request.getQuantity());
+        product.setSpecial(request.getSpecial());
+        product.setUnitPrice(request.getUnitPrice());
+        return productMapper.toProductView(productRepo.save(product));
+    }
+
+    @Transactional
+    public ProductView delete(Long id) {
+        Product product = productRepo.getById(id);
+        productRepo.delete(product);
+        return productMapper.toProductView(product);
+    }
+
     public ProductView getProduct(Long id) {
         Product product = productRepo.getById(id);
         return productMapper.toProductView( product );

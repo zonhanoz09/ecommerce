@@ -9,6 +9,13 @@ public class CreateProductRequest {
 
     @NotNull
     private String name;
-    private String amount;
-    private String price;
+    private Long categoryId;
+    private String description;
+    private String discount;
+    private String image;
+    private String available;
+    private String productDate;
+    private String quantity;
+    private String special;
+    private String unitPrice;
 }

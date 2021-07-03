@@ -1,6 +1,5 @@
 export interface User {
+    id: number;
     username: string;
-    password: string;
-    rePassword: string;
-    authorities: Array<String>;
+    amount: string;
 }

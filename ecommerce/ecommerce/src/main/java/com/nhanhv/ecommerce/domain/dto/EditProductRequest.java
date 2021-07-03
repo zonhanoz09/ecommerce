@@ -2,11 +2,12 @@ package com.nhanhv.ecommerce.domain.dto;
 
 import lombok.Data;
 
-import java.time.LocalDateTime;
-@Data
-public class ProductView {
+import javax.validation.constraints.NotNull;
 
-    private Long id;
+@Data
+public class EditProductRequest {
+
+    @NotNull
     private String name;
     private Long categoryId;
     private String description;
@@ -17,5 +18,4 @@ public class ProductView {
     private String quantity;
     private String special;
     private String unitPrice;
-    private String viewCount;
 }
